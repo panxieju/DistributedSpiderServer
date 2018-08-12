@@ -1,0 +1,74 @@
+
+syntax = "proto3";
+package DistributeSpider;
+
+service SpiderServer{
+	rpc req(Request) returns (Response) {}
+	rpc wait(Wait) returns (Ack) {}
+	rpc keepalive(Register) returns (UrlsAck) {}
+	rpc save(House) returns (Ack) {}
+}
+
+
+message Register{
+	string host = 1;
+	int64 timestamp = 2;
+	repeated Status status = 3;
+}
+
+message Status {
+	string spider = 1;
+	int64 timestamp = 2;
+	bool isalive = 3;
+}
+
+message Request{
+	string host = 1;
+	string spider = 2;
+	int64 timestamp = 3;
+}
+
+message Response{
+	bool empty = 1;
+	string url = 2;
+	int64 timestamp = 3;
+}
+
+message Wait{
+	int64 timestamp = 1;
+}
+
+message Ack{
+	string host = 1;
+	int64 timestamp = 2;
+}
+
+message UrlsAck{
+	bool work = 1;
+	int64 timestamp = 2;
+	repeated string spider = 3;
+}
+
+message House{
+	string title = 1;
+	string url = 2;
+	string image_url = 3;
+	double lat = 4;
+	double lon = 5;
+	float rental = 6;
+	string house_type = 7;
+	string area = 8;
+	string floor = 9;
+	string campus = 10;
+	string district = 11;
+	string city = 12;
+	string date = 13;
+	fixed32 rooms = 14;
+	string address = 15;
+	string source = 16;
+	string contact = 17;
+	string phone = 18;
+	string md5 = 19;
+	string time = 20;
+}
+
